@@ -1,6 +1,16 @@
+import { useContext } from "react";
 import logo from "../../../assets/common/logo.png";
 import ActiveLink from "../../../components/ActiveLink/ActiveLink";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import emptyUser from "../../../assets/common/empty-user.jpg";
+import { BsFillGearFill } from "react-icons/bs";
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch(err => console.log(err));
+  };
   const navLinks = (
     <>
       <li>
@@ -9,17 +19,67 @@ const Header = () => {
       <li>
         <ActiveLink to="/allToys">All Toys</ActiveLink>
       </li>
-      <li>
-        <ActiveLink to="/myToys">My Toys</ActiveLink>
-      </li>
-      <li>
-        <ActiveLink to="/addAToy">Add a Toy</ActiveLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <ActiveLink to="/myToys">My Toys</ActiveLink>
+          </li>
+          <li>
+            <ActiveLink to="/addAToy">Add a Toy</ActiveLink>
+          </li>
+        </>
+      )}
       <li>
         <ActiveLink to="/blog">Blog</ActiveLink>
       </li>
+      {user ? (
+        <>
+          <li>
+            {user.photoURL ? (
+              <>
+                <div
+                  className={`${
+                    user.displayName && "tooltip tooltip-bottom"
+                  } p-0`}
+                  data-tip={user.displayName}
+                >
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    className="w-14 h-14 rounded-full"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <img src={emptyUser} alt="Empty user" />
+              </>
+            )}
+          </li>
+          {/* <li className="p-0 my-auto ml-2">
+            <BsFillGearFill className="w-10 h-10 p-0" />
+          </li> */}
+          <li className="dropdown dropdown-end flex items-center ml-2">
+            <label tabIndex={0} className="p-0">
+              <BsFillGearFill className="w-10 h-10 p-0" />
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>{user.displayName}</a>
+              </li>
+              <li>
+                <a onClick={handleLogOut}>Log out</a>
+              </li>
+            </ul>
+          </li>
+        </>
+      ) : (
+        ""
+      )}
     </>
-    // Home, All Toys, My Toys, Add A Toy, Blogs,
   );
   return (
     <header className="bg-slate-100">
