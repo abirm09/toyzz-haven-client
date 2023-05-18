@@ -13,7 +13,7 @@ const Header = () => {
         <ActiveLink to="/myToys">My Toys</ActiveLink>
       </li>
       <li>
-        <ActiveLink to="/addAToy">Add a toy</ActiveLink>
+        <ActiveLink to="/addAToy">Add a Toy</ActiveLink>
       </li>
       <li>
         <ActiveLink to="/blog">Blog</ActiveLink>

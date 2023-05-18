@@ -7,3 +7,19 @@
 .cs-container {
     @apply max-w-7xl mx-auto px-2
 }
+
+.cs-text-gradient {
+    @apply bg-gradient-to-r from-red-600 to-pink-500 bg-clip-text text-transparent font-montserrat
+}
+
+.cs-btn-primary {
+    @apply btn px-8 normal-case bg-gradient-to-r from-red-600 to-pink-500 border-none
+}
+
+.section-title {
+    @apply cs-text-gradient text-2xl font-semibold text-center pb-5
+}
+
+.section-sub-title {
+    @apply text-center pb-5 font-poppins
+}
