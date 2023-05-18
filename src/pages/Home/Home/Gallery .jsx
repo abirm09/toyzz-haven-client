@@ -10,7 +10,6 @@ const Gallery = () => {
       .then(res => res.json())
       .then(data => setGalleryData(data));
   }, []);
-  console.log(galleryData);
   return (
     <section className="bg-slate-800 py-20">
       <div className="cs-container">
