@@ -29,8 +29,8 @@ const Gallery = () => {
               <SwiperSlide key={img.index}>
                 <div className="max-w-xs rounded-lg overflow-hidden relative">
                   <img src={img.picture} alt={img.name} />
-                  <div className="group absolute bg-slate-800 w-full h-full top-0 left-0 bg-opacity-0 hover:bg-opacity-30 transition-all">
-                    <h2 className="absolute bottom-10 font-bold text-3xl left-2 scale-0 group-hover:scale-100 transition-all">
+                  <div className="group absolute bg-slate-800 w-full h-full top-0 left-0 bg-opacity-0 hover:bg-opacity-50 transition-all">
+                    <h2 className="absolute bottom-10 font-bold text-sm sm:text-base md:text-3xl left-2 scale-0 group-hover:scale-100 transition-all text-white">
                       {img.name}
                     </h2>
                   </div>
