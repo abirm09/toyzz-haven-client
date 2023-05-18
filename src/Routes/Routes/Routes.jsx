@@ -4,6 +4,9 @@ import Home from "../../pages/Home/Home/Home";
 import Error from "../../pages/Error/Error";
 import Login from "../../components/Login/Login";
 import Registration from "../../components/Registration/Registration";
+import AllToys from "../../pages/AllToys/AllToys";
+import ToyDetails from "../../pages/ToyDetails/ToyDetails";
+const apiUrl = "http://localhost:5000/";
 const route = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +16,16 @@ const route = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/allToys",
+        element: <AllToys />,
+        loader: () => fetch(`${apiUrl}toys/limit20`),
+      },
+      {
+        path: "/toyDetails/:id",
+        element: <ToyDetails />,
+        loader: ({ params }) => fetch(`${apiUrl}toy/${params.id}`),
       },
       {
         path: "/login",
