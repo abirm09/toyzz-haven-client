@@ -1,7 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import { useLoaderData, useLocation } from "react-router-dom";
 
 const ToyDetails = () => {
   const data = useLoaderData();
+  useEffect(() => {
+    document.title = `Toyzz haven | ${data?.toy_name}`;
+  }, [data]);
   console.log(data);
   return (
     <div>
