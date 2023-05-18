@@ -23,3 +23,15 @@
 .section-sub-title {
     @apply text-center pb-5 font-poppins
 }
+
+.cs-form {
+    /* @apply space-y-3 */
+}
+
+.cs-form label {
+    @apply block font-poppins text-slate-500 font-semibold mb-1
+}
+
+.cs-form input {
+    @apply border outline-none w-full mb-5 py-3 px-2
+}
