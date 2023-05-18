@@ -13,48 +13,43 @@ const Category = () => {
       .then(data => setCategories(data));
   }, [apiDomain]);
   useEffect(() => {
-    fetch(`${apiDomain}toys/categories`)
+    fetch(`${apiDomain}toy/category?category=Marvel`)
       .then(res => res.json())
       .then(data => setToy(data));
   }, [apiDomain]);
+
+  const handleTab = category => {
+    fetch(`${apiDomain}toy/category?category=${category}`)
+      .then(res => res.json())
+      .then(data => setToy(data));
+  };
   return (
     <section className="mt-20">
       <div className="cs-container">
         <h2 className="section-title">Products</h2>
         <p className="section-sub-title">Choose the best for your baby. </p>
         <div>
-          {categories.length && (
+          {toy.length && (
             <>
               <Tabs>
                 <TabList>
                   {categories.map((cate, index) => (
-                    <Tab key={index}>{cate}</Tab>
+                    <Tab key={index} onClick={() => handleTab(cate)}>
+                      {cate}
+                    </Tab>
                   ))}
                 </TabList>
-
                 {
                   <>
-                    <TabPanel>
-                      <div className="flex flex-wrap gap-5 justify-center mt-10">
-                        {toy?.marvel?.map(toy => (
-                          <ToyCard key={toy._id} toy={toy} />
-                        ))}
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="flex flex-wrap gap-5 justify-center mt-10">
-                        {toy?.avengers?.map(toy => (
-                          <ToyCard key={toy._id} toy={toy} />
-                        ))}
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="flex flex-wrap gap-5 justify-center mt-10">
-                        {toy?.starWars?.map(toy => (
-                          <ToyCard key={toy._id} toy={toy} />
-                        ))}
-                      </div>
-                    </TabPanel>
+                    {categories.map((cate, index) => (
+                      <TabPanel key={index}>
+                        <div className="flex gap-5 justify-center flex-wrap mt-10">
+                          {toy.map(tt => (
+                            <ToyCard key={tt._id} toy={tt} />
+                          ))}
+                        </div>
+                      </TabPanel>
+                    ))}
                   </>
                 }
               </Tabs>
