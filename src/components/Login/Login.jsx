@@ -1,6 +1,34 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { logInWithEmail, logInWithGoogle } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const handleLogIn = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    setErrorMessage("");
+    logInWithEmail(email, password)
+      .then(res => {
+        console.log(res.user);
+      })
+      .catch(err => {
+        console.log(err);
+        setErrorMessage(err.message.split("/")[1].replace(")", ""));
+      });
+  };
+  const handleGoogleLogin = () => {
+    logInWithGoogle()
+      .then(res => {
+        console.log(res.user);
+      })
+      .catch(err => {
+        setErrorMessage(err.message.split("/")[1].replace(")", ""));
+      });
+  };
   return (
     <section className="mt-20">
       <div className="cs-container">
@@ -8,7 +36,7 @@ const Login = () => {
           <h2 className="text-xl font-poppins font-bold cs-text-gradient mb-3">
             Log in
           </h2>
-          <form>
+          <form onSubmit={handleLogIn}>
             <div className="cs-form">
               <label htmlFor="email">Your email *</label>
               <input
@@ -27,10 +55,18 @@ const Login = () => {
                 placeholder="Password"
               />
             </div>
+            {errorMessage && (
+              <p className="text-red-600 mb-5 font-semibold font-poppins">
+                Error : {errorMessage}
+              </p>
+            )}
             <input type="submit" value="Login" className="cs-btn-primary" />
           </form>
           <div className="divider font-poppins font-bold">OR</div>
-          <button className="flex items-center gap-3 border w-full rounded-full p-1">
+          <button
+            className="flex items-center gap-3 border w-full rounded-full p-1"
+            onClick={handleGoogleLogin}
+          >
             <img
               className="w-8"
               src="https://i.ibb.co/6NBjMQN/google.png"

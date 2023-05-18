@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
-  const { createUSerWithEmail } = useContext(AuthContext);
+  const { createUSerWithEmail, logInWithGoogle } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
   const handleRegister = event => {
     event.preventDefault();
     const form = event.target;
@@ -12,14 +13,32 @@ const Registration = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
+    const submit = form.submit;
+    setErrorMessage("");
+    submit.setAttribute("disabled", true);
     // console.log(email, password, name, photo);
     createUSerWithEmail(email, password)
       .then(res => {
         sendUserData(res.user, name, photo);
         console.log(res.user);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setErrorMessage(err.message.split("/")[1].replace(")", ""));
+        // console.log();
+        submit.removeAttribute("disabled");
+      });
   };
+
+  const handleGoogleLogin = () => {
+    logInWithGoogle()
+      .then(res => {
+        console.log(res.user);
+      })
+      .catch(err => {
+        setErrorMessage(err.message.split("/")[1].replace(")", ""));
+      });
+  };
+
   const sendUserData = (user, name, photo) => {
     updateProfile(user, {
       displayName: name,
@@ -65,10 +84,23 @@ const Registration = () => {
                 placeholder="Password"
               />
             </div>
-            <input type="submit" value="Register" className="cs-btn-primary" />
+            {errorMessage && (
+              <p className="text-red-600 mb-5 font-semibold font-poppins">
+                Error : {errorMessage}
+              </p>
+            )}
+            <input
+              type="submit"
+              value="Register"
+              name="submit"
+              className="cs-btn-primary"
+            />
           </form>
           <div className="divider font-poppins font-bold">OR</div>
-          <button className="flex items-center gap-3 border w-full rounded-full p-1">
+          <button
+            className="flex items-center gap-3 border w-full rounded-full p-1"
+            onClick={handleGoogleLogin}
+          >
             <img
               className="w-8"
               src="https://i.ibb.co/6NBjMQN/google.png"
