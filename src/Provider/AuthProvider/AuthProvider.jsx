@@ -45,7 +45,6 @@ const AuthProvider = ({ children }) => {
       return unsubscribe();
     };
   }, []);
-  console.log(user);
   const data = {
     apiDomain,
     createUSerWithEmail,

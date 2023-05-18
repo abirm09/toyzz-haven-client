@@ -17,7 +17,6 @@ const Category = () => {
       .then(res => res.json())
       .then(data => setToy(data));
   }, [apiDomain]);
-  console.log(toy);
   return (
     <section className="mt-20">
       <div className="cs-container">

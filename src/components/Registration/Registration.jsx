@@ -9,9 +9,9 @@ const Registration = () => {
   const handleRegister = event => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
+    const name = form.name.value || null;
     const email = form.email.value;
-    const photo = form.photo.value;
+    const photo = form.photo.value || null;
     const password = form.password.value;
     const submit = form.submit;
     setErrorMessage("");

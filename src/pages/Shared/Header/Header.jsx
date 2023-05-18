@@ -4,6 +4,7 @@ import ActiveLink from "../../../components/ActiveLink/ActiveLink";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import emptyUser from "../../../assets/common/empty-user.jpg";
 import { BsFillGearFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
@@ -52,13 +53,15 @@ const Header = () => {
               </>
             ) : (
               <>
-                <img src={emptyUser} alt="Empty user" />
+                <img
+                  src={emptyUser}
+                  alt="Empty user"
+                  className="w-14 h-14 p-0"
+                  style={{ borderRadius: "30px" }}
+                />
               </>
             )}
           </li>
-          {/* <li className="p-0 my-auto ml-2">
-            <BsFillGearFill className="w-10 h-10 p-0" />
-          </li> */}
           <li className="dropdown dropdown-end flex items-center ml-2">
             <label tabIndex={0} className="p-0">
               <BsFillGearFill className="w-10 h-10 p-0" />
@@ -67,9 +70,11 @@ const Header = () => {
               tabIndex={0}
               className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>{user.displayName}</a>
-              </li>
+              {user.displayName && (
+                <li>
+                  <a>{user.displayName}</a>
+                </li>
+              )}
               <li>
                 <a onClick={handleLogOut}>Log out</a>
               </li>
@@ -77,7 +82,11 @@ const Header = () => {
           </li>
         </>
       ) : (
-        ""
+        <li>
+          <Link className="cs-btn-primary" to="/login">
+            Log in / register
+          </Link>
+        </li>
       )}
     </>
   );
