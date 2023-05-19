@@ -12,27 +12,38 @@ const AddToy = () => {
   const handleAddToy = event => {
     event.preventDefault();
     const form = event.target;
-    const sellerName = user?.displayName;
+    const seller_name = user?.displayName;
     const email = user?.email;
-    const toyName = form.toy_name.value;
-    const photo = form.photo.value;
-    const category = form.Category.value;
+    const toy_name = form.toy_name.value;
+    const toy_pic = form.photo.value;
+    const subcategory = form.Category.value;
     const price = form.price.value;
     const rating = form.rating.value;
-    const quantity = form.quantity.value;
-    const description = form.description.value;
+    const available_quantity = form.quantity.value;
+    const short_description = form.description.value;
     const toyDetails = {
-      sellerName,
+      seller_name,
       email,
-      toyName,
-      photo,
-      category,
+      toy_name,
+      toy_pic,
+      subcategory,
       price,
       rating,
-      quantity,
-      description,
+      available_quantity,
+      short_description,
     };
-    console.log(toyDetails);
+    fetch(`${apiDomain}toy/add`, {
+      method: "POST",
+      headers: {
+        authenticate: `Bearer ${localStorage.getItem("access_token")}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toyDetails),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   };
   return (
     <section className="cs-container py-5">
@@ -86,7 +97,7 @@ const AddToy = () => {
             </div>
             <div className="cs-form">
               <label htmlFor="rating">Rating</label>
-              <input type="number" name="rating" placeholder="4.9" />
+              <input type="text" name="rating" placeholder="4.9" />
             </div>
             <div className="cs-form">
               <label htmlFor="Quantity">Available Quantity</label>

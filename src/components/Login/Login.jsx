@@ -28,6 +28,7 @@ const Login = () => {
     logInWithGoogle()
       .then(res => {
         console.log(res.user);
+        navigate(from);
       })
       .catch(err => {
         setErrorMessage(err.message.split("/")[1].replace(")", ""));
