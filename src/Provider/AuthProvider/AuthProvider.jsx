@@ -44,6 +44,20 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
       setLoader(false);
+      if (currentUser?.email) {
+        fetch(`${apiDomain}jwt`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: currentUser?.email }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            localStorage.setItem("access_token", data.token);
+          })
+          .catch(err => console.log(err));
+      }
     });
     return () => {
       return unsubscribe();
