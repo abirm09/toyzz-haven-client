@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 const MyToys = () => {
   const { apiDomain, user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
@@ -52,9 +53,12 @@ const MyToys = () => {
                   <td>{myToy.price}</td>
                   <td>{myToy.available_quantity}</td>
                   <td>
-                    <button className="btn btn-ghost">
+                    <Link
+                      to={`/editToy/${myToy._id}`}
+                      className="btn btn-ghost"
+                    >
                       <FiEdit2 />
-                    </button>
+                    </Link>
                   </td>
                   <td>
                     <button className="btn btn-ghost">
