@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { logInWithEmail, logInWithGoogle } = useContext(AuthContext);
+  const { logInWithEmail, logInWithGoogle, setRedirectLink } =
+    useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
+  const location = useLocation();
+  const from = location?.state?.from.pathname || "/";
+  const navigate = useNavigate();
   const handleLogIn = event => {
     event.preventDefault();
     const form = event.target;
@@ -12,8 +16,8 @@ const Login = () => {
     const password = form.password.value;
     setErrorMessage("");
     logInWithEmail(email, password)
-      .then(res => {
-        console.log(res.user);
+      .then(() => {
+        navigate(from);
       })
       .catch(err => {
         console.log(err);
@@ -28,6 +32,10 @@ const Login = () => {
       .catch(err => {
         setErrorMessage(err.message.split("/")[1].replace(")", ""));
       });
+  };
+  const handleRedirectRegister = () => {
+    setRedirectLink(from);
+    navigate("/registration");
   };
   return (
     <section className="mt-20">
@@ -79,9 +87,12 @@ const Login = () => {
           <div className="mt-5">
             <p className="font-poppins font-semibold text-center text-sm">
               New to <span>Toyzz haven</span> ?{" "}
-              <Link to="/registration" className="cs-text-gradient">
+              <button
+                onClick={handleRedirectRegister}
+                className="cs-text-gradient"
+              >
                 Registration
-              </Link>
+              </button>
             </p>
           </div>
         </div>

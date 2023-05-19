@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
-  const { createUSerWithEmail, logInWithGoogle } = useContext(AuthContext);
+  const { createUSerWithEmail, logInWithGoogle, redirectLink } =
+    useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  console.log(redirectLink);
   const handleRegister = event => {
     event.preventDefault();
     const form = event.target;
@@ -20,7 +23,7 @@ const Registration = () => {
     createUSerWithEmail(email, password)
       .then(res => {
         sendUserData(res.user, name, photo);
-        console.log(res.user);
+        navigate(redirectLink);
       })
       .catch(err => {
         setErrorMessage(err.message.split("/")[1].replace(")", ""));
@@ -31,8 +34,8 @@ const Registration = () => {
 
   const handleGoogleLogin = () => {
     logInWithGoogle()
-      .then(res => {
-        console.log(res.user);
+      .then(() => {
+        navigate(redirectLink);
       })
       .catch(err => {
         setErrorMessage(err.message.split("/")[1].replace(")", ""));

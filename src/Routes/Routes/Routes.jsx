@@ -6,6 +6,7 @@ import Login from "../../components/Login/Login";
 import Registration from "../../components/Registration/Registration";
 import AllToys from "../../pages/AllToys/AllToys";
 import ToyDetails from "../../pages/ToyDetails/ToyDetails";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 const apiUrl = "http://localhost:5000/";
 const route = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const route = createBrowserRouter([
       },
       {
         path: "/toyDetails/:id",
-        element: <ToyDetails />,
+        element: (
+          <PrivateRoute>
+            <ToyDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) => fetch(`${apiUrl}toy/${params.id}`),
       },
       {

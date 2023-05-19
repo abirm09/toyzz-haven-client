@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const [redirectLink, setRedirectLink] = useState("/");
   const apiDomain = "http://localhost:5000/";
 
   //login with email and password
@@ -25,10 +26,12 @@ const AuthProvider = ({ children }) => {
 
   //log in with google
   const logInWithGoogle = () => {
+    setLoader(true);
     return signInWithPopup(auth, googleProvider);
   };
   //login with email
   const logInWithEmail = (email, password) => {
+    setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   //log out user
@@ -40,6 +43,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
+      setLoader(false);
     });
     return () => {
       return unsubscribe();
@@ -53,6 +57,8 @@ const AuthProvider = ({ children }) => {
     logInWithGoogle,
     logOut,
     logInWithEmail,
+    redirectLink,
+    setRedirectLink,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
