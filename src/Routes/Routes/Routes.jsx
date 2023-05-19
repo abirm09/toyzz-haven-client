@@ -8,6 +8,7 @@ import AllToys from "../../pages/AllToys/AllToys";
 import ToyDetails from "../../pages/ToyDetails/ToyDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddToy from "../../pages/AddToy/AddToy";
+import MyToys from "../../pages/MyToys/MyToys";
 const apiUrl = "http://localhost:5000/";
 const route = createBrowserRouter([
   {
@@ -35,7 +36,19 @@ const route = createBrowserRouter([
       },
       {
         path: "/addAToy",
-        element: <AddToy />,
+        element: (
+          <PrivateRoute>
+            <AddToy />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myToys",
+        element: (
+          <PrivateRoute>
+            <MyToys />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
