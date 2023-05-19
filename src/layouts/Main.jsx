@@ -3,6 +3,7 @@ import Header from "../pages/Shared/Header/Header";
 import { useEffect } from "react";
 import Lottie from "lottie-react";
 import loadingAnim from "../assets/common/loading.json";
+import Footer from "../pages/Shared/Footer/Footer";
 const Main = () => {
   const location = useLocation();
   const navigation = useNavigation();
@@ -27,6 +28,7 @@ const Main = () => {
         </div>
       )}
       <Outlet />
+      <Footer />
     </>
   );
 };
