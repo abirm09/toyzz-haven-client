@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
   if (loader) {
     return (
-      <div>
+      <div className="flex justify-center">
         <Lottie animationData={loadingAnim} loop={true} className="w-56 h-56" />
       </div>
     );

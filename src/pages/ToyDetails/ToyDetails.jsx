@@ -7,7 +7,6 @@ const ToyDetails = () => {
   useEffect(() => {
     document.title = `Toyzz haven | ${data?.toy_name}`;
   }, [data]);
-  console.log(data);
   const {
     toy_name,
     toy_pic,
