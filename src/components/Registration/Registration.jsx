@@ -8,7 +8,6 @@ const Registration = () => {
     useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  console.log(redirectLink);
   const handleRegister = event => {
     event.preventDefault();
     const form = event.target;
@@ -19,7 +18,6 @@ const Registration = () => {
     const submit = form.submit;
     setErrorMessage("");
     submit.setAttribute("disabled", true);
-    // console.log(email, password, name, photo);
     createUSerWithEmail(email, password)
       .then(res => {
         sendUserData(res.user, name, photo);
@@ -27,7 +25,6 @@ const Registration = () => {
       })
       .catch(err => {
         setErrorMessage(err.message.split("/")[1].replace(")", ""));
-        // console.log();
         submit.removeAttribute("disabled");
       });
   };

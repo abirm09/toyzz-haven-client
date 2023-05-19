@@ -36,30 +36,32 @@ const Header = () => {
       {user ? (
         <>
           <li>
-            {user.photoURL ? (
-              <>
-                <div
-                  className={`${
-                    user.displayName && "tooltip tooltip-bottom"
-                  } p-0`}
-                  data-tip={user.displayName}
-                >
-                  <img
-                    src={user.photoURL}
-                    alt={user.displayName}
-                    className="w-14 h-14 rounded-full"
-                  />
-                </div>
-              </>
+            {user?.photoURL ? (
+              <div
+                className={`${
+                  user.displayName && "tooltip tooltip-bottom"
+                } p-0`}
+                data-tip={user.displayName}
+              >
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName}
+                  className="w-14 h-14 rounded-full"
+                />
+              </div>
             ) : (
-              <>
+              <div
+                className={`${
+                  user.displayName && "tooltip tooltip-bottom"
+                } p-0`}
+                data-tip={user.displayName}
+              >
                 <img
                   src={emptyUser}
-                  alt="Empty user"
-                  className="w-14 h-14 p-0"
-                  style={{ borderRadius: "30px" }}
+                  alt={user.displayName}
+                  className="w-14 h-14 rounded-full"
                 />
-              </>
+              </div>
             )}
           </li>
           <li className="dropdown dropdown-end flex items-center ml-2">
