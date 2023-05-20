@@ -6,11 +6,11 @@ const Footer = () => {
       <div className="cs-container">
         <div className="footer pt-10 pb-3 text-base-content grid-cols-1 lg:grid-cols-6">
           <div className="col-span-1 font-poppins">
-            <span className="footer-title">Company</span>
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
-            <a className="link link-hover">Jobs</a>
-            <a className="link link-hover">Press kit</a>
+            <span className="footer-title">Contacts</span>
+            <a href="mailto:mdabirm2004@gmail.com">mdabirm2004@gmail.com</a>
+            <a href="tel:+8801789-699367">+8801789-699367</a>
+            <span className="footer-title">Address</span>
+            <p>88 Bankra, Assasuni, Satkhira, Bangladesh.</p>
           </div>
           <div className="col-span-1">
             <span className="footer-title">Social</span>
