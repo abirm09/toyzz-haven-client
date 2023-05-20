@@ -5,6 +5,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Toaster, toast } from "react-hot-toast";
+import { IoMdArrowDropdown } from "react-icons/io";
 const MyToys = () => {
   const { apiDomain, user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
@@ -55,10 +56,47 @@ const MyToys = () => {
       }
     });
   };
-
+  const handleSort = value => {
+    const email = { email: user?.email };
+    fetch(`${apiDomain}toy/sort`, {
+      method: "POST",
+      headers: {
+        authenticate: `Bearer ${localStorage.getItem("access_token")}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email, value }),
+    })
+      .then(res => res.json())
+      .then(data => setMyToys(data))
+      .catch(err => console.log(err));
+  };
   return (
     <section className="cs-container py-10">
       <div>
+        <div>
+          <div className="dropdown">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost normal-case m-1 border border-slate-300"
+            >
+              Sort by
+              <span className="ml-2">
+                <IoMdArrowDropdown />
+              </span>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li onClick={() => handleSort(1)}>
+                <a>Ascending</a>
+              </li>
+              <li onClick={() => handleSort(-1)}>
+                <a>Descending</a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div className="overflow-x-auto">
           <table className="table w-full">
             {/* head */}
@@ -68,7 +106,7 @@ const MyToys = () => {
                 <th>Image</th>
                 <th>Name</th>
                 <th>Quantity</th>
-                <th>Rating</th>
+                <th>Price</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
@@ -85,8 +123,8 @@ const MyToys = () => {
                     />
                   </td>
                   <td>{myToy.toy_name}</td>
-                  <td>{myToy.price}</td>
                   <td>{myToy.available_quantity}</td>
+                  <td>{myToy.price}</td>
                   <td>
                     <Link
                       to={`/editToy/${myToy._id}`}

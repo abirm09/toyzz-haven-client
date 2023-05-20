@@ -17,11 +17,13 @@ const Blog = () => {
               <span>{index + 1}. </span>
               <span>{blog.question}</span>
             </h2>
-            {blog.answer.split("/").map((ans, index) => (
-              <p key={index} className="mt-2">
-                {ans}
-              </p>
-            ))}
+            <div className="ml-5">
+              {blog.answer.split("/").map((ans, index) => (
+                <p key={index} className="mt-2">
+                  {ans}
+                </p>
+              ))}
+            </div>
           </div>
         ))}
       </div>

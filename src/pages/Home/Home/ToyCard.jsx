@@ -1,5 +1,4 @@
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
