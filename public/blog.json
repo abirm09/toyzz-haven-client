@@ -1,0 +1,18 @@
+[
+  {
+    "question": "What is an access token and refresh token? How do they work and where should we store them on the client-side?",
+    "answer": "Access tokens and refresh tokens are secret tokens used in authentication and authorization. / After Successfully log on, server send an access token and refresh token. And the token is stored on the client side. In every request client send the access to the server. The server validates the token and gives authorize access to the data. If the refresh token expires, the client can send the refresh token to obtain a new access token. / We should sore the token in HTTP-only cookies to get more security."
+  },
+  {
+    "question": "Compare SQL and NoSQL databases?",
+    "answer": "SQL(Structured Query Language) and NoSQL (Not Only SQL) are to different of database management system. SQL databases follow a rigid, predefined schema with a fixed structure of tables, columns, and relationships. And organize the data into rows and columns. / On the other hand, NoSQL databases are designed for horizontal scalability, allowing for easy distribution of data across multiple servers. They often have built-in mechanisms for handling distributed data and can scale horizontally by adding more servers to the database cluster."
+  },
+  {
+    "question": "What is express js? What is Nest JS (google it)?",
+    "answer": "Express js is a web framework for NODe.js that use to build server. Express js simplifies the process of handling http requests, routing, middleware and managing application logic. / Next is is TypeScript-based progressive web application framework that builds on top of Express.js. It provides a higher-level abstraction and additional features for building scalable and maintainable server-side applications."
+  },
+  {
+    "question": "What is MongoDB aggregate and how does it work (google it)?",
+    "answer": "In MongoDB, the aggregate method is a powerful way to perform advanced data processing and analysis on collections. It allows us to perform complex computations and transformations of the stored data on Mongodb. There are some methods of aggregate and each method performs different operations. Some of them are ($match, $project, $group, $sort, $limit, $skip, etc.). / 1.  $match: The $match stage is use to filter the documents in the collection based on certain condition. / 2. $project : The $project stage allows us to shape the output of the aggregation pipeline. / 3. $group: The $group stage is used for grouping documents together based on a specified key or keys. And many more."
+  }
+]

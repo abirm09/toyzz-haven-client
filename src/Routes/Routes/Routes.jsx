@@ -10,6 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddToy from "../../pages/AddToy/AddToy";
 import MyToys from "../../pages/MyToys/MyToys";
 import EditToys from "../../pages/EditToys/EditToys";
+import Blog from "../../pages/Blog/Blog";
 const apiUrl = "http://localhost:5000/";
 const route = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const route = createBrowserRouter([
         path: "/editToy/:id",
         element: <EditToys />,
         loader: ({ params }) => fetch(`${apiUrl}toy/${params.id}`),
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/login",

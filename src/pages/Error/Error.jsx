@@ -4,7 +4,11 @@ const Error = () => {
   return (
     <section>
       <div className="space-y-10">
-        <img className="max-w-lg mx-auto mt-20" src={errorImg} alt="404" />
+        <img
+          className="max-w-lg mx-auto mt-20 w-full"
+          src={errorImg}
+          alt="404"
+        />
         <div className="flex justify-center">
           <Link to="/" className="cs-btn-primary ">
             Back to home
