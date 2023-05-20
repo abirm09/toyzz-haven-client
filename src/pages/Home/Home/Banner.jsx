@@ -4,7 +4,7 @@ const Banner = () => {
     <section className="cs-container" data-aos="zoom-in">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-20 py-10 items-center">
         <div className="space-y-5">
-          <h2 className="cs-text-gradient text-2xl md:text-5xl font-semibold">
+          <h2 className="cs-text-gradient text-2xl md:text-5xl font-semibold font-bubblegum">
             Buy some awesome toys for your kids.
           </h2>
           <p className="text-sm md:text-base text-justify font-poppins text-slate-600">

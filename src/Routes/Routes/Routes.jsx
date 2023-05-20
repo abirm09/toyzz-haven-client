@@ -11,7 +11,7 @@ import AddToy from "../../pages/AddToy/AddToy";
 import MyToys from "../../pages/MyToys/MyToys";
 import EditToys from "../../pages/EditToys/EditToys";
 import Blog from "../../pages/Blog/Blog";
-const apiUrl = "http://localhost:5000/";
+const apiUrl = "https://toyzz-haven-server.vercel.app/";
 const route = createBrowserRouter([
   {
     path: "/",

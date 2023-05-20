@@ -9,7 +9,7 @@
 }
 
 .cs-text-gradient {
-    @apply bg-gradient-to-r from-red-600 to-pink-500 bg-clip-text text-transparent font-montserrat
+    @apply bg-gradient-to-r from-red-600 to-pink-500 bg-clip-text text-transparent
 }
 
 .cs-bg-gradient {
@@ -21,7 +21,7 @@
 }
 
 .section-title {
-    @apply bg-gradient-to-r from-red-600 to-pink-500 bg-clip-text text-transparent text-2xl font-bold text-center pb-2 font-bubblegum
+    @apply cs-text-gradient text-2xl font-bold text-center pb-2 font-bubblegum
 }
 
 .section-sub-title {

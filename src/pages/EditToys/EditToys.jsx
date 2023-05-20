@@ -36,7 +36,6 @@ const EditToys = () => {
       available_quantity,
       short_description,
     };
-    console.log(toyDetails);
     const bodyData = { toyDetails, id: data._id, email: user.email };
     fetch(`${apiDomain}toy/update`, {
       method: "PUT",

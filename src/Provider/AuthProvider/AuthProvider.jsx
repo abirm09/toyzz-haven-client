@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
   const [loader, setLoader] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const [redirectLink, setRedirectLink] = useState("/");
-  const apiDomain = "http://localhost:5000/";
+  const apiDomain = "https://toyzz-haven-server.vercel.app/";
 
   //login with email and password
   const createUSerWithEmail = (email, password) => {
