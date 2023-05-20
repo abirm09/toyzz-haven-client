@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-
+import { Toaster, toast } from "react-hot-toast";
 const AddToy = () => {
   const { user, apiDomain } = useContext(AuthContext);
   const [category, setCategory] = useState([]);
@@ -42,7 +42,10 @@ const AddToy = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Product added successfully");
+          form.reset();
+        }
       });
   };
   return (
@@ -93,7 +96,7 @@ const AddToy = () => {
             </div>
             <div className="cs-form">
               <label htmlFor="price">Price</label>
-              <input type="number" name="price" placeholder="$ 20.99" />
+              <input type="text" name="price" placeholder="$ 20.99" />
             </div>
             <div className="cs-form">
               <label htmlFor="rating">Rating</label>
@@ -101,7 +104,7 @@ const AddToy = () => {
             </div>
             <div className="cs-form">
               <label htmlFor="Quantity">Available Quantity</label>
-              <input type="number" name="quantity" placeholder="20" />
+              <input type="text" name="quantity" placeholder="20" />
             </div>
             <div className="cs-form col-span-1 md:col-span-2">
               <label htmlFor="Description">Description</label>
@@ -114,6 +117,7 @@ const AddToy = () => {
           <input type="submit" value="Add toy" className="cs-btn-primary" />
         </form>
       </div>
+      <Toaster />
     </section>
   );
 };

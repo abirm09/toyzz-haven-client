@@ -3,6 +3,8 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { Toaster, toast } from "react-hot-toast";
 const MyToys = () => {
   const { apiDomain, user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
@@ -20,7 +22,40 @@ const MyToys = () => {
       .then(data => setMyToys(data))
       .catch(err => console.log(err));
   }, [apiDomain, user]);
-  console.log(myToys);
+
+  const handleDeleteToys = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(result => {
+      if (result.isConfirmed) {
+        fetch(`${apiDomain}toy/delete?id=${id}`, {
+          method: "DELETE",
+          headers: {
+            authenticate: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.acknowledged) {
+              const restToy = myToys.filter(myToy => myToy._id !== id);
+              setMyToys(restToy);
+              Swal.fire("Deleted!", "Your toy has been deleted.", "success");
+            }
+          })
+          .catch(err => {
+            toast.error("Some thing went wrong");
+            console.log(err);
+          });
+      }
+    });
+  };
+
   return (
     <section className="cs-container py-10">
       <div>
@@ -61,7 +96,10 @@ const MyToys = () => {
                     </Link>
                   </td>
                   <td>
-                    <button className="btn btn-ghost">
+                    <button
+                      onClick={() => handleDeleteToys(myToy._id)}
+                      className="btn btn-ghost"
+                    >
                       <FaTrashAlt />
                     </button>
                   </td>
@@ -71,6 +109,7 @@ const MyToys = () => {
           </table>
         </div>
       </div>
+      <Toaster />
     </section>
   );
 };
