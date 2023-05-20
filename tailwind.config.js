@@ -7,6 +7,7 @@ export default {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        bubblegum: ["Bubblegum Sans", "cursive"],
       },
     },
   },

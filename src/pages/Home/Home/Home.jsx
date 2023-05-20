@@ -2,6 +2,7 @@ import Banner from "./Banner";
 import Category from "./Category";
 import Gallery from "./Gallery ";
 import RandomThree from "./RandomThree";
+import WhyChooseUs from "./WhyChooseUs";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Gallery />
       <Category />
       <RandomThree />
+      <WhyChooseUs />
     </>
   );
 };
