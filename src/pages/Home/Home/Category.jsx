@@ -24,7 +24,7 @@ const Category = () => {
       .then(data => setToy(data));
   };
   return (
-    <section className="mt-20">
+    <section className="mt-20" data-aos="slide-up">
       <div className="cs-container">
         <h2 className="section-title">Products</h2>
         <p className="section-sub-title">Choose the best for your baby. </p>

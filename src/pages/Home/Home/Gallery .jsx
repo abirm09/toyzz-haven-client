@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { useEffect, useState } from "react";
+
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
   useEffect(() => {
@@ -11,7 +12,7 @@ const Gallery = () => {
       .then(data => setGalleryData(data));
   }, []);
   return (
-    <section className="bg-slate-800 py-20">
+    <section className="bg-slate-800 py-20" data-aos="fade-up">
       <div className="cs-container">
         <h2 className="section-title">Gallery</h2>
         <p className="section-sub-title text-white">Our top selling toys.</p>

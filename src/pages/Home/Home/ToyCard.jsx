@@ -22,7 +22,7 @@ const ToyCard = ({ toy }) => {
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={toy_pic} alt="Shoes" />
+        <img src={toy_pic} alt="Shoes" className="w-[384px] h-[256px]" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{toy_name}</h2>

@@ -1,7 +1,7 @@
 import heroToy from "../../../assets/home/banner/baby_girl_with_toy.svg";
 const Banner = () => {
   return (
-    <section className="cs-container">
+    <section className="cs-container" data-aos="zoom-in">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-20 py-10 items-center">
         <div className="space-y-5">
           <h2 className="cs-text-gradient text-2xl md:text-5xl font-semibold">

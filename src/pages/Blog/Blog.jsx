@@ -7,7 +7,6 @@ const Blog = () => {
       .then(res => res.json())
       .then(data => setQuestionAns(data));
   }, []);
-  console.log(questionAns);
   return (
     <section className="cs-container py-10">
       <h2 className="section-title">Question answers</h2>
